@@ -1,3 +1,4 @@
+import { sessionRouter } from './session.router';
 import { authGuard } from '@api/guards/auth.guard';
 import { instanceExistsGuard, instanceLoggedGuard } from '@api/guards/instance.guard';
 import Telemetry from '@api/guards/telemetry.guard';
@@ -71,4 +72,6 @@ router
   .use('', new EventRouter(configService, ...guards).router)
   .use('', new StorageRouter(...guards).router);
 
+router.use('/', sessionRouter);
 export { HttpStatus, router };
+
